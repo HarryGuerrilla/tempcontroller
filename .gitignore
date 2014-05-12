@@ -8,6 +8,7 @@
 *.swp
 *.vi
 *~
+\#*
 *.sass-cache
 
 # Logs
