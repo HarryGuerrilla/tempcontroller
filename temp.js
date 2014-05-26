@@ -1,4 +1,5 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/node --harmony
+
 'use strict';
 
 var b = require('bonescript'),
@@ -21,7 +22,7 @@ function resistance_to_fahrenheight(x) {
 
 function printStatus(x) {
     console.log('Analog Value: ' + x);
-    console.log('Resistance: ' + calculate_resistance(x));	
+    console.log('Resistance: ' + calculate_resistance(x));
     console.log('Temp: ' + Math.round(resistance_to_fahrenheight(x) * 10)/10 + ' °F');
 }
 
@@ -40,4 +41,3 @@ function get_temp(){
 }
 
 get_temp();
-
