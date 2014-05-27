@@ -40,4 +40,11 @@ function get_temp(){
   }
 }
 
-get_temp();
+// every 30 seconds get temp
+var timer = setInterval(get_temp, 30000);
+
+var stopTimer = function(){
+    clearInterval(timer);
+}
+
+// setTimeout(stopTimer, 60000);
