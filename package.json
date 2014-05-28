@@ -14,5 +14,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/HarryGuerilla/tempcontroller/issues"
+  },
+  "dependencies": {
+    "redis": "~0.10.3"
   }
 }
