@@ -3,7 +3,21 @@
 'use strict';
 
 var b = require('bonescript'),
-    resistor = 10010;
+    resistor = 10010,
+    led0 = "USR0",
+    led1 = "USR1",
+    led2 = "USR2",
+    led3 = "USR3";
+
+// turn off activity leds
+b.pinMode(led0,b.OUTPUT);
+b.digitalWrite(led0, b.LOW);
+b.pinMode(led1,b.OUTPUT);
+b.digitalWrite(led1, b.LOW);
+b.pinMode(led2,b.OUTPUT);
+b.digitalWrite(led2, b.LOW);
+b.pinMode(led3,b.OUTPUT);
+b.digitalWrite(led3, b.LOW);
 
 function calculate_resistance(analogValue) {
     return ((resistor * (1-analogValue))/analogValue);
