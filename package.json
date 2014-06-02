@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "redis": "~0.10.3",
-    "moment": "~2.6.0"
+    "moment": "~2.6.0",
+    "bonescript": "~0.2.4"
   }
 }
