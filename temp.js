@@ -3,11 +3,15 @@
 'use strict';
 
 var b = require('bonescript'),
+    data = require('./lib/data'),
+    moment = require('moment'),
     resistor = 10010,
     led0 = "USR0",
     led1 = "USR1",
     led2 = "USR2",
-    led3 = "USR3";
+    led3 = "USR3",
+    read_count = 0,
+    read_value = 0;
 
 // turn off activity leds
 b.pinMode(led0,b.OUTPUT);
@@ -45,17 +49,35 @@ function printStatus(x) {
 }
 
 function get_temp(){
+  average_read();
+}
+
+function average_read() {
   var sample = [];
   var total = 0;
-  for (let i=0;i<5;i++) {
-      b.analogRead('P9_40', function(x){
-          sample.push(x.value);
-          if (sample.length == 5) {
-	            for (let s=0;s<5;s++) {total += sample[s];}
-	            printStatus(total/sample.length);
-	        }
-      });
+  for (let i=0; i<5; i++) {
+    b.analogRead('P9_40', function(x) {
+        sample.push(x.value);
+        if (sample.length == 5) {
+            for (let s=0; s<5; s++) {total += sample[s];}
+            storeTemp(total/sample.length);
+            // printStatus(total/sample.length);
+        }
+    });
   }
+}
+
+function storeTemp(temp) {
+    read_count += 1;
+    read_value += temp;
+    if (read_count % 20 == 0) {
+        console.log('saving value: ' + read_value/20);
+        let epoch = (new Date).getTime();
+        let temp_object = "{ '" + moment(epoch).utc().format() + "' : '" + roundTemp(read_value/20) + "' }";
+        data.save(['batch', epoch, temp_object]);
+        read_value = 0;
+        read_count = 0;
+    }
 }
 
 // every 30 seconds get temp
