@@ -16,6 +16,7 @@
     "url": "https://github.com/HarryGuerilla/tempcontroller/issues"
   },
   "dependencies": {
-    "redis": "~0.10.3"
+    "redis": "~0.10.3",
+    "moment": "~2.6.0"
   }
 }
