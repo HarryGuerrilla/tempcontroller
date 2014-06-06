@@ -73,7 +73,7 @@ function storeTemp(temp) {
     if (read_count % 20 == 0) {
         console.log('saving value: ' + read_value/20);
         let epoch = (new Date).getTime();
-        let temp_object = "[ '" + epoch + "', '" + roundTemp(read_value/20) + "' ]";
+        let temp_object = "[ " + epoch + ", " + roundTemp(read_value/20) + " ]";
         data.save(['batch', epoch, temp_object]);
         read_value = 0;
         read_count = 0;
