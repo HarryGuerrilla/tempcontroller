@@ -1,11 +1,26 @@
 {
   "name": "tempcontroller",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
+  "description": "Fermentation temperature controller for the BeagleBone Black.",
+  "main": "temp.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HarryGuerilla/tempcontroller.git"
+  },
+  "author": "Tony Pelaez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HarryGuerilla/tempcontroller/issues"
+  },
   "dependencies": {
+    "redis": "~0.10.3",
+    "moment": "~2.6.0",
+    "bonescript": "~0.2.4",
     "express": "~4.2.0",
     "static-favicon": "~1.0.0",
     "morgan": "~1.0.0",
