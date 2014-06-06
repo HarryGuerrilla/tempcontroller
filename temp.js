@@ -50,7 +50,6 @@ function printStatus(x) {
 
 function get_temp(){
   average_read();
-  getData();
 }
 
 function average_read() {
