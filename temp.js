@@ -50,6 +50,7 @@ function printStatus(x) {
 
 function get_temp(){
   average_read();
+  getData();
 }
 
 function average_read() {
@@ -78,6 +79,12 @@ function storeTemp(temp) {
         read_value = 0;
         read_count = 0;
     }
+}
+
+function getData() {
+    data.get(['batch', '0', '-1'], function(x) {
+        console.log(x);
+    });
 }
 
 // every 30 seconds get temp
