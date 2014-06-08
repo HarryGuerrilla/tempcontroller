@@ -1,12 +1,6 @@
 $(document).ready(function(){
   checkTemp();
-  var data = [[-373597200000, 315.71], [-370918800000, 317.45], [-368326800000, 317.50], [-363056400000, 315.86], [-360378000000, 314.93]];
-  $.plot($("#placeholder"), [data], {
-    xaxis: {
-      mode: "time",
-      timezone: "browser"
-    }
-  });
+  getChartData();
 });
 
 function checkTemp() {
@@ -17,4 +11,19 @@ function checkTemp() {
     }
   });
   setTimeout(checkTemp, 5000);
+}
+
+function getChartData() {
+  $.ajax({
+    url: '/api/temp-data',
+    success: function(data) {
+      $.plot($("#placeholder"), [data], {
+        xaxis: {
+          mode: "time",
+          timezone: "browser"
+        }
+      });
+    }
+  });
+  setTimeout(getChartData, 5000)
 }
