@@ -1,8 +1,21 @@
 #!/usr/bin/env node
-var debug = require('debug')('tempcontroller');
-var app = require('../app');
+var debug = require('debug')('tempcontroller'),
+    app = require('../app'),
+    temp = require('../lib/temp'),
+    data = require('../lib/data');
+
+function logTemperature() {
+  temp.current(function(temp) {
+    console.log('Current temperature is: ' + temp);
+    var time = (new Date).getTime();
+    data.save(['batch', time, "[ " + time + ", " + temp + " ]"]);
+  });
+  setTimeout(logTemperature, 10000);
+}
 
 app.set('port', process.env.PORT || 3001);
+
+logTemperature();
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
