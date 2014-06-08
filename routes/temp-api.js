@@ -17,7 +17,9 @@ router.get('/temp-data', function(req, res) {
       reading = JSON.parse(reading);
       temp_array.push(reading);
     });
-    res.send(temp_array);
+    data.downSample(temp_array, 1000, function(d){
+      res.send(d);
+    });
   });
 });
 
