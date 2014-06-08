@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  setTimeout(checkTemp, 5000);
+  checkTemp();
 });
 
 function checkTemp() {

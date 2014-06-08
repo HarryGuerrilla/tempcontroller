@@ -4,9 +4,7 @@ var express = require('express'),
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  temp.current(function(current_temp){
-    res.render('index', { title: 'TempContoller', temp: current_temp });
-  });
+  res.render('index', { title: 'TempContoller', temp: '' });
 });
 
 module.exports = router;
