@@ -21,9 +21,13 @@ function getChartData() {
         xaxis: {
           mode: "time",
           timezone: "browser"
+        },
+        yaxis: {
+          min: 40,
+          max: 90
         }
       });
     }
   });
-  setTimeout(getChartData, 5000)
+  setTimeout(getChartData, 5000);
 }
