@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    temp = require('../lib/temp'),
+    current_temp = 0;
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  temp.current(function(t){
+    console.log('new temp: ' + t);
+    current_temp = t;
+    res.render('index', { title: 'TempContoller', temp: current_temp });
+  });
 });
 
 module.exports = router;
