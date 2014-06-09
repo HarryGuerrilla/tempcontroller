@@ -7,7 +7,7 @@ function checkTemp() {
   $.ajax({
     url: '/api/current-temp',
     success: function(data) {
-      $('#temp p').text('Current temp is: ' + data['current_temp']);
+      $('#temp').text(data['current_temp'].toFixed(1));
     }
   });
   setTimeout(checkTemp, 5000);

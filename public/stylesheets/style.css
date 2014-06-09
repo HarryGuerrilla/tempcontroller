@@ -1,7 +1,31 @@
+@font-face {
+  font-family: 'DSDIGI';
+  src: url("../fonts/DSDIGI.eot");
+  src: local('DSDIGI'), url("../fonts/DSDIGI.woff") format('woff'), url("../fonts/DSDIGI.ttf") format('truetype');
+}
 body {
   padding-top: 60px;
 }
 #placeholder {
   width: 1000px;
   height: 600px;
+}
+.temp-display {
+  height: 5em;
+  background-color: #a5b5a5;
+  width: 7em;
+  margin-left: 1.3em;
+  margin-bottom: 1.3em;
+  padding: 0.2em;
+  border: 2px solid #333;
+}
+.temp-dis {
+  text-align: center;
+  font-family: 'DSDIGI';
+}
+.temp {
+  font-family: 'DSDIGI';
+  font-size: 4em;
+  text-align: center;
+  margin-top: 0.3em;
 }
