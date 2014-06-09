@@ -5,3 +5,7 @@ block content
     .temp-dis Current:
     #temp.temp #{temp}
   #placeholder
+  .edit
+    form(name="edit", action="/", method="post")
+      input(type="submit", name="edit", value="Clear")
+      input(type="submit", name="edit", value="Save")
