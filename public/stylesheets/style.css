@@ -29,3 +29,8 @@ body {
   text-align: center;
   margin-top: 0.3em;
 }
+.loading {
+  font-size: 1.3em;
+  text-align: center;
+  margin-top: 250px;
+}

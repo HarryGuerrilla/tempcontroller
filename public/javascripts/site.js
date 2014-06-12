@@ -17,6 +17,7 @@ function getChartData() {
   $.ajax({
     url: '/api/temp-data',
     success: function(data) {
+      $('.loading').hide();
       $.plot($("#placeholder"), [data], {
         xaxis: {
           mode: "time",
