@@ -23,8 +23,9 @@ function getChartData() {
           timezone: "browser"
         },
         yaxis: {
-          min: 40,
-          max: 90
+          min: 55,
+          max: 90,
+          tickSize: 1
         }
       });
     }
