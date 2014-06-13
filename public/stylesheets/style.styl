@@ -30,6 +30,47 @@ body
   margin-top 0.3em
 
 .loading
-  font-size 1.3em
-  text-align center
-  margin-top 250px
+  border 1px solid black
+  height 100%
+
+w = 200px
+h = 6px
+
+half(n)
+  n / 2
+
+.loader
+  position absolute
+  display block
+  left 50%
+  width w
+  height h
+  margin-left (w*-1)
+  margin-top 294px
+
+.loader:before
+  content ""
+  display block
+  width 10%
+  height 100%
+  background-color #a5b5a5
+  animation loader 6s ease 0s infinite
+
+vendors = official
+
+@keyframes loader
+  0%
+    margin 0 99% 0 0
+    width 1%
+  25%
+    margin 0
+    width 100%
+  50%
+    margin 0 0 0 99%
+    width 1%
+  75%
+    margin 0
+    width 100%
+  100%
+    margin 0 99% 0 0
+    width 1%

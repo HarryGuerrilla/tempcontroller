@@ -5,7 +5,8 @@ block content
     .temp-dis Current:
     #temp.temp #{temp}
   #placeholder
-    .loading Loading Data...
+    .loading
+      span.loader
   .edit
     form(name="edit", action="/", method="post")
       input(type="submit", name="edit", value="Clear")
