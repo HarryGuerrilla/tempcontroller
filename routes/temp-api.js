@@ -23,6 +23,17 @@ router.get('/temp-data', function(req, res) {
   });
 });
 
+router.get('/all-temp-data', function(req, res) {
+  data.get(['batch', 0, -1], function(temp_data) {
+    var temp_array = [];
+    temp_data.forEach(function(reading) {
+      reading = JSON.parse(reading);
+      temp_array.push(reading);
+    });
+    res.send(temp_array);
+  });
+});
+
 router.get('/', function(req, res) {
 
 });
