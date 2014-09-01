@@ -10,7 +10,7 @@ function logTemperature() {
     var time = (new Date).getTime();
     data.save(['batch', time, "[ " + time + ", " + temp + " ]"]);
   });
-  setTimeout(logTemperature, 10000);
+  setTimeout(logTemperature, 60000);
 }
 
 app.set('port', process.env.PORT || 3001);
