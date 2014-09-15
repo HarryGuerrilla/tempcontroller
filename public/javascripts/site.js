@@ -14,6 +14,7 @@ function checkTemp() {
 }
 
 function getChartData() {
+  var date = new Date();
   $.ajax({
     url: '/api/temp-data',
     success: function(data) {
@@ -21,7 +22,9 @@ function getChartData() {
       $.plot($("#placeholder"), [data], {
         xaxis: {
           mode: "time",
-          timezone: "browser"
+          timezone: "browser",
+          min: date - 1210000000,
+          max: date
         },
         yaxis: {
           min: 55,
