@@ -23,7 +23,7 @@ function getChartData() {
         xaxis: {
           mode: "time",
           timezone: "browser",
-          min: date - 1210000000,
+          min: date - 604800000 ,
           max: date
         },
         yaxis: {
