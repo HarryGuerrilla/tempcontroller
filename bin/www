@@ -2,7 +2,10 @@
 var debug = require('debug')('tempcontroller'),
     app = require('../app'),
     temp = require('../lib/temp'),
-    data = require('../lib/data');
+    data = require('../lib/data'),
+    sqlite3 = require('sqlite3'),
+    db = new sqlite3.Database('../data.db'),
+    schedule = require('node-schedule');
 
 function logTemperature() {
   temp.current(function(temp) {
@@ -12,6 +15,11 @@ function logTemperature() {
   });
   setTimeout(logTemperature, 60000);
 }
+
+var j = schedule.scheduleJob({hour: 0, minute: 30}, function(){
+  console.log('saving data...');
+  data.write(db);
+});
 
 app.set('port', process.env.PORT || 3001);
 
