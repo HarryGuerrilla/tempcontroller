@@ -4,7 +4,7 @@ var debug = require('debug')('tempcontroller'),
     temp = require('../lib/temp'),
     data = require('../lib/data'),
     sqlite3 = require('sqlite3'),
-    db = new sqlite3.Database('../data.db'),
+    db = new sqlite3.Database('./data.db'),
     schedule = require('node-schedule');
 
 function logTemperature() {
