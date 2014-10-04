@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var debug = require('debug')('tempcontroller'),
+    b = require('bonescript'),
     app = require('../app'),
     temp = require('../lib/temp'),
     data = require('../lib/data'),
@@ -22,6 +23,15 @@ var j = schedule.scheduleJob({hour: 0, minute: 30}, function(){
 });
 
 app.set('port', process.env.PORT || 3001);
+
+b.pinMode('USR0', b.OUTPUT);
+b.digitalWrite('USR0', b.LOW);
+b.pinMode('USR1', b.OUTPUT);
+b.digitalWrite('USR1', b.LOW);
+b.pinMode('USR2', b.OUTPUT);
+b.digitalWrite('USR2', b.LOW);
+b.pinMode('USR3', b.OUTPUT);
+b.digitalWrite('USR3', b.LOW);
 
 logTemperature();
 
