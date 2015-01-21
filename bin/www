@@ -6,10 +6,11 @@ var debug = require('debug')('tempcontroller'),
     data = require('../lib/data'),
     sqlite3 = require('sqlite3'),
     db = new sqlite3.Database('./data.db'),
-    schedule = require('node-schedule');
+    schedule = require('node-schedule'),
+    exec = require('child_process').exec;
 
 function logTemperature() {
-  temp.current(function(temp) {
+  temp.w1_current(function(temp) {
     console.log('Current temperature is: ' + temp);
     var time = (new Date).getTime();
     data.save(['batch', time, "[ " + time + ", " + temp + " ]"]);
@@ -17,9 +18,16 @@ function logTemperature() {
   setTimeout(logTemperature, 60000);
 }
 
+exec('echo BB-1WIRE-P9-22 > $SLOTS', function(err, stdout, stderr){
+  console.log('loading 1-wire temp sensor:' + stdout);
+  if (err !== null) {
+    console.log('error loading temp sensor:' + err);
+  }
+})
+
 var j = schedule.scheduleJob({hour: 0, minute: 30}, function(){
   console.log('saving data...');
-  data.write(db);
+//  data.write(db);
 });
 
 app.set('port', process.env.PORT || 3001);
