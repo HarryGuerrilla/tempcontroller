@@ -3,7 +3,7 @@ var debug = require('debug')('tempcontroller'),
     b = require('bonescript'),
     app = require('../app'),
     temp = require('../lib/temp'),
-    data = require('../lib/data'),
+    data = require('../lib/data-sqlite'),
     sqlite3 = require('sqlite3'),
     db = new sqlite3.Database('./data.db'),
     schedule = require('node-schedule'),
@@ -13,7 +13,7 @@ function logTemperature() {
   temp.current(function(temp) {
     console.log('Current temperature is: ' + temp);
     var time = (new Date).getTime();
-    data.save(['batch', time, "[ " + time + ", " + temp + " ]"]);
+    data.save(['batch', time, temp]);
   });
   setTimeout(logTemperature, 60000);
 }

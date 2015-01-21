@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     temp = require('../lib/temp'),
-    data = require('../lib/data');
+    data = require('../lib/data-sqlite');
 
 /* GET users listing. */
 router.get('/current-temp', function(req, res) {
@@ -13,8 +13,8 @@ router.get('/current-temp', function(req, res) {
 router.get('/temp-data', function(req, res) {
   data.get(['batch', 0, -1], function(temp_data) {
     var temp_array = [];
-    temp_data.forEach(function(reading) {
-      reading = JSON.parse(reading);
+    temp_data.forEach(function(data) {
+      var reading = [data.time, data.temperature];
       temp_array.push(reading);
     });
     data.downSample(temp_array, 1000, function(d){
@@ -26,8 +26,8 @@ router.get('/temp-data', function(req, res) {
 router.get('/all-temp-data', function(req, res) {
   data.get(['batch', 0, -1], function(temp_data) {
     var temp_array = [];
-    temp_data.forEach(function(reading) {
-      reading = JSON.parse(reading);
+    temp_data.forEach(function(data) {
+      var reading = [data.time, data.temperature];
       temp_array.push(reading);
     });
     res.send(temp_array);
