@@ -4,9 +4,6 @@ var debug = require('debug')('tempcontroller'),
     app = require('../app'),
     temp = require('../lib/temp'),
     data = require('../lib/data-sqlite'),
-    sqlite3 = require('sqlite3'),
-    db = new sqlite3.Database('./data.db'),
-    schedule = require('node-schedule'),
     exec = require('child_process').exec;
 
 function logTemperature() {
@@ -24,11 +21,6 @@ exec('echo BB-1WIRE-P9-22 > $SLOTS', function(err, stdout, stderr){
     console.log('error loading temp sensor:' + err);
   }
 })
-
-var j = schedule.scheduleJob({hour: 0, minute: 30}, function(){
-  console.log('saving data...');
-//  data.write(db);
-});
 
 app.set('port', process.env.PORT || 3001);
 
