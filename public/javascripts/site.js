@@ -34,5 +34,5 @@ function getChartData() {
       });
     }
   });
-  setTimeout(getChartData, 5000);
+  setTimeout(getChartData, 60000);
 }
