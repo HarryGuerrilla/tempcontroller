@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     temp = require('../lib/temp'),
-    data = require('../lib/data');
+    data = require('../lib/data-sqlite');
 
 /* GET home page. */
 router.get('/', function(req, res) {
