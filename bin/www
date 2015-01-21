@@ -10,7 +10,7 @@ var debug = require('debug')('tempcontroller'),
     exec = require('child_process').exec;
 
 function logTemperature() {
-  temp.w1_current(function(temp) {
+  temp.current(function(temp) {
     console.log('Current temperature is: ' + temp);
     var time = (new Date).getTime();
     data.save(['batch', time, "[ " + time + ", " + temp + " ]"]);

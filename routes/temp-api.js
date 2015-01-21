@@ -5,7 +5,7 @@ var express = require('express'),
 
 /* GET users listing. */
 router.get('/current-temp', function(req, res) {
-  temp.w1_current(function(current_temp){
+  temp.current(function(current_temp){
     res.send({ current_temp: current_temp });
   });
 });
