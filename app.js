@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var expressValidator = require('express-validator');
 
 var routes = require('./routes/index');
 var temp_api = require('./routes/temp-api');
@@ -20,6 +21,13 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(expressValidator({
+  customValidators: {
+    isBetween: function(param, min, max) {
+      return min <= param && max >= param;
+    }
+  }
+}));
 app.use(cookieParser('keyboard cat'));
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));

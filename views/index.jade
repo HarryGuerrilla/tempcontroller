@@ -1,6 +1,16 @@
 extends layout
 
 block content
+  -if (messages.errors)
+    .errors
+      ul
+        -each message in messages.errors
+          li Error: #{message.msg}. Value: #{message.value}
+  -if (messages.success)
+    .success
+      ul
+        -each message in messages.success
+          li= message
   .temp-display
     .temp-dis Current:
     #temp.temp #{temp}
