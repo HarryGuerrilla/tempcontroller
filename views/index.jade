@@ -4,6 +4,13 @@ block content
   .temp-display
     .temp-dis Current:
     #temp.temp #{temp}
+  .temp-display
+    .temp-dis Target:
+    #target.temp #{target}
+  form(name="target", action="/target", method="post")
+    p Set target:
+    input(type="text", name="target", value=target)
+    input(type="submit", name="save", value="Save")
   #placeholder
     .loading
       span.loader
