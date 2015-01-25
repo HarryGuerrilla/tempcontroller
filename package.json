@@ -31,6 +31,7 @@
     "sqlite3": "~2.2.7",
     "node-schedule": "~0.1.13",
     "mathjs": "~1.2.0",
-    "connect-flash": "~0.1.1"
+    "connect-flash": "~0.1.1",
+    "express-session": "~1.10.1"
   }
 }
