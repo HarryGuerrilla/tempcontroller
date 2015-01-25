@@ -41,6 +41,9 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+// locals
+app.locals.inspect = require('util').inspect;
+
 /// error handlers
 
 // development error handler
