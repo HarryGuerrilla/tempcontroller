@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HarryGuerilla/tempcontroller.git"
+    "url": "https://github.com/HarryGuerrilla/tempcontroller.git"
   },
   "author": "Tony Pelaez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HarryGuerilla/tempcontroller/issues"
+    "url": "https://github.com/HarryGuerrilla/tempcontroller/issues"
   },
   "dependencies": {
     "redis": "~0.10.3",
