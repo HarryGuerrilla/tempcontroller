@@ -12,6 +12,12 @@ body {
 #placeholder .progress {
   margin-top: 5em;
 }
+@media (max-width: 767px) {
+  #placeholder {
+    height: 300px;
+    font-size: 0.7em;
+  }
+}
 .temp-display {
   background-color: #a5b5a5;
   margin-bottom: 1.3em;
