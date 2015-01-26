@@ -9,6 +9,9 @@ body {
 #placeholder {
   height: 600px;
 }
+#placeholder .progress {
+  margin-top: 5em;
+}
 .temp-display {
   background-color: #a5b5a5;
   margin-bottom: 1.3em;

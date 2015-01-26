@@ -16,9 +16,19 @@ function checkTemp() {
 function getChartData() {
   var date = new Date();
   $.ajax({
+    xhr: function() {
+       var xhr = new window.XMLHttpRequest();
+       xhr.addEventListener("progress", function(evt) {
+           if (evt.lengthComputable) {
+               var percentComplete = evt.loaded / evt.total;
+               $('.progress').attr('style', 'width:' + percentComplete + ';');
+           }
+       }, false);
+       return xhr;
+    },
     url: '/api/temp-data',
     success: function(data) {
-      $('.loading').hide();
+//      $('.progress').hide();
       $.plot($("#placeholder"), [data], {
         xaxis: {
           mode: "time",
