@@ -21,14 +21,13 @@ function getChartData() {
        xhr.addEventListener("progress", function(evt) {
            if (evt.lengthComputable) {
                var percentComplete = evt.loaded / evt.total;
-               $('.progress').attr('style', 'width:' + percentComplete + ';');
+               $('.progress-bar').css('width', percentComplete * 100 + '%');
            }
        }, false);
        return xhr;
     },
     url: '/api/temp-data',
     success: function(data) {
-//      $('.progress').hide();
       $.plot($("#placeholder"), [data], {
         xaxis: {
           mode: "time",
