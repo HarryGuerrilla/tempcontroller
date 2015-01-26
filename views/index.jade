@@ -14,20 +14,23 @@ block content
             -each message in messages.success
               li= message
   .row
-    .temp-display.col-xs-12.col-md-1
-      .temp-dis Current:
-      #temp.temp #{temp}
-    .temp-display.col-xs-12.col-md-1
-      .temp-dis Target:
-      #target.temp #{target}
-    .col-xs-12.col-md-3
+    .col-xs-12.col-md-2
+      .temp-display
+        .temp-dis Current:
+        #temp.temp #{temp}
+    .col-xs-12.col-md-2
+      .temp-display
+        .temp-dis Target:
+        #target.temp #{target}
+  .row
+    .col-xs-12.col-md-3.col-md-offset-2
       form(name="target", action="/target", method="post")
         p Set target:
         input(type="text", name="target", value=target)
         input(type="submit", name="save", value="Save")
   .row
     .col-xs-12
-      #placeholder
+      #placeholder.col-xs-12
         .loading
           span.loader
       .edit
