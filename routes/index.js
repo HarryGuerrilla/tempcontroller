@@ -32,7 +32,7 @@ router.post('/target', function(req, res) {
     req.flash('errors', errors);
     res.redirect('back');
   } else {
-    var args = ['batch', Date.parse(new Date()), req.body.target];
+    var args = ['batch', Date.parse(new Date()), Math.round(req.body.target * 10)/10];
     data.updateTarget(args, function(){
       req.flash('success', 'Updated Target Temperature');
       res.redirect('back');
