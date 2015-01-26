@@ -1,21 +1,23 @@
 doctype html
-html
+html(lang='en')
   head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-theme.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    .navbar.navbar-inverse.navbar-fixed-top
-      .navbar-inner
-        .container
-          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button(type="button", class="navbar-toggle collapsed", data-toggle="collapse")
+            span.sr-only Toggle navigation
             span.icon-bar
-          a.brand(href='/') #{title}
-          .nav-collapse.collapse
-            ul.nav
-              li.active
-                a(href='/') Home
+            span.icon-bar
+            span.icon-bar
+          a(class="navbar-brand", href="/") TempController
     .container
       block content
     script(src='/javascripts/jquery-1.11.1.min.js')

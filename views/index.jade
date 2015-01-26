@@ -1,30 +1,36 @@
 extends layout
 
 block content
-  -if (messages.errors)
-    .errors
-      ul
-        -each message in messages.errors
-          li Error: #{message.msg}. Value: #{message.value}
-  -if (messages.success)
-    .success
-      ul
-        -each message in messages.success
-          li= message
-  .temp-display
-    .temp-dis Current:
-    #temp.temp #{temp}
-  .temp-display
-    .temp-dis Target:
-    #target.temp #{target}
-  form(name="target", action="/target", method="post")
-    p Set target:
-    input(type="text", name="target", value=target)
-    input(type="submit", name="save", value="Save")
-  #placeholder
-    .loading
-      span.loader
-  .edit
-    form(name="edit", action="/", method="post")
-      input(type="submit", name="edit", value="Clear")
-      input(type="submit", name="edit", value="Save")
+  .row
+    .col-xs-12
+      -if (messages.errors)
+        .errors
+          ul
+            -each message in messages.errors
+              li Error: #{message.msg}. Value: #{message.value}
+      -if (messages.success)
+        .success
+          ul
+            -each message in messages.success
+              li= message
+  .row
+    .temp-display.col-xs-12.col-md-1
+      .temp-dis Current:
+      #temp.temp #{temp}
+    .temp-display.col-xs-12.col-md-1
+      .temp-dis Target:
+      #target.temp #{target}
+    .col-xs-12.col-md-3
+      form(name="target", action="/target", method="post")
+        p Set target:
+        input(type="text", name="target", value=target)
+        input(type="submit", name="save", value="Save")
+  .row
+    .col-xs-12
+      #placeholder
+        .loading
+          span.loader
+      .edit
+        form(name="edit", action="/", method="post")
+          input(type="submit", name="edit", value="Clear")
+          input(type="submit", name="edit", value="Save")

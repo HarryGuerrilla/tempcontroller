@@ -11,13 +11,12 @@ body {
   height: 600px;
 }
 .temp-display {
-  height: 5em;
   background-color: #a5b5a5;
-  width: 7em;
   margin-left: 1.3em;
   margin-bottom: 1.3em;
   padding: 0.2em;
   border: 2px solid #333;
+  height: 6em;
 }
 .temp-dis {
   text-align: center;
@@ -27,7 +26,7 @@ body {
   font-family: 'DSDIGI';
   font-size: 4em;
   text-align: center;
-  margin-top: 0.3em;
+  line-height: 1em;
 }
 .loading {
   border: 1px solid #000;
