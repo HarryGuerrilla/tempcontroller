@@ -35,7 +35,8 @@ block content
       #placeholder.col-xs-12
         .loading
           span.loader
-      .edit
-        form(name="edit", action="/", method="post")
-          input(type="submit", name="edit", value="Clear")
-          input(type="submit", name="edit", value="Save")
+  .row
+    .col-xs-12
+      form(name="edit", action="/", method="post")
+        input(type="submit", name="edit", value="Clear")
+        input(type="submit", name="edit", value="Save")
