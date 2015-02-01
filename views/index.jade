@@ -26,9 +26,9 @@ block content
         #target.temp #{target}
   .row
     .col-xs-12.col-md-3.col-md-offset-2
-      form(name="target", action="/target", method="post")
+      form(name="target", action="/target", method="post", id="target-form")
         p Set target:
-        input(type="text", name="target", value=target)
+        input(type="text", name="target", value=target, class="tmp-target")
         input(type="submit", name="save", value="Save")
   .row
     .col-xs-12
