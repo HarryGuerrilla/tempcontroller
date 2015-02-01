@@ -1,17 +1,13 @@
+var socket = io();
 $(document).ready(function(){
-  checkTemp();
   getChartData();
-});
 
-function checkTemp() {
-  $.ajax({
-    url: '/api/current-temp',
-    success: function(data) {
-      $('#temp').text(data['current_temp'].toFixed(1));
-    }
+  socket.on('temp reading', function(reading){
+    $('#temp').text(reading);
   });
-  setTimeout(checkTemp, 5000);
-}
+
+  socket.on('update chart', getChartData());
+});
 
 function getChartData() {
   var date = new Date();
@@ -42,5 +38,4 @@ function getChartData() {
       });
     }
   });
-  setTimeout(getChartData, 60000);
 }

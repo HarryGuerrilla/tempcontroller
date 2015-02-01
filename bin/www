@@ -2,17 +2,16 @@
 var debug = require('debug')('tempcontroller'),
     b = require('bonescript'),
     app = require('../app'),
+    http = require('http').Server(app),
     temp = require('../lib/temp'),
     data = require('../lib/data-sqlite'),
     exec = require('child_process').exec;
 
 function logTemperature() {
   temp.current(function(temp) {
-    console.log('Current temperature is: ' + temp);
     var time = (new Date).getTime();
     data.save(['batch', time, temp]);
   });
-  setTimeout(logTemperature, 60000);
 }
 
 exec('echo BB-1WIRE-P9-22 > $SLOTS', function(err, stdout, stderr){
@@ -20,7 +19,7 @@ exec('echo BB-1WIRE-P9-22 > $SLOTS', function(err, stdout, stderr){
   if (err !== null) {
     console.log('error loading temp sensor:' + err);
   }
-})
+});
 
 app.set('port', process.env.PORT || 3001);
 
@@ -34,8 +33,22 @@ b.pinMode('USR3', b.OUTPUT);
 b.digitalWrite('USR3', b.LOW);
 
 data.setup(function(){
-  logTemperature();
   var server = app.listen(app.get('port'), function() {
     debug('Express server listening on port ' + server.address().port);
   });
+
+  var io = require('socket.io')(server);
+  var counter = 0;
+
+  setInterval(function(){
+    temp.current(function(temp){
+      console.log('Temperature: ' + temp + '°');
+      io.emit('temp reading', temp);
+      counter += 1;
+      if(counter % 10 == 0) {
+        logTemperature();
+        io.emit('update chart', temp);
+      }
+    });
+  }, 5000);
 });
