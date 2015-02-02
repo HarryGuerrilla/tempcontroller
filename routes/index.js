@@ -32,10 +32,18 @@ router.post('/target', function(req, res) {
     req.flash('errors', errors);
     res.redirect('back');
   } else {
-    var args = ['batch', Date.parse(new Date()), Math.round(req.body.target * 10)/10];
-    data.updateTarget(args, function(){
-      req.flash('success', 'Updated Target Temperature');
-      res.redirect('back');
+    var date = Date.parse(new Date());
+    var new_target = Math.round(req.body.target * 10)/10;
+    data.target('batch', function(target){
+      var old_target = target.temperature;
+      var args_current = ['batch', date - 1, old_target];
+      var args_new = ['batch', date, new_target];
+      data.updateTarget(args_current, function(){
+        data.updateTarget(args_new, function(){
+          req.flash('success', 'Updated Target Temperature');
+          res.redirect('back');
+        });
+      });
     });
   }
 });
