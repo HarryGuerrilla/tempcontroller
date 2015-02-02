@@ -13,7 +13,23 @@ $(document).ready(function(){
   $('.buttons').append('<div class="row"><a href="#" class="up"><img src="images/up.svg" alt="up" /></a></div>').css('margin-top', '0.7em')
                .append('<div class="row" style="margin-top: 0.3em;"><a href="#" class="dn"><img src="images/down.svg" alt="down" /></a></div>');
   $('#target-form').hide();
+
   var temp_change_timer = null;
+
+  $('#target-form').submit(function(event){
+    var temp = parseInt($('.tmp-target').val());
+    event.preventDefault();
+    var $form = $(this),
+        url = $form.attr("action");
+    var posting = $.post(url, { target: temp, save: "Save" });
+    posting.done(function(data){
+      var content = $(data).find(".alert");
+      $(".messages").html(content).hide().slideDown("slow", function(){
+        setTimeout(function(){ $(".messages").slideUp("slow");}, 10000);
+      });
+    });
+  });
+
   $('.up').click(function(){
     var temp = parseInt($('.tmp-target').val());
     if (temp < 99) temp += 1;
@@ -24,6 +40,7 @@ $(document).ready(function(){
       $('#target-form').submit();
     }, 10000);
   });
+
   $('.dn').click(function(){
     var temp = parseInt($('.tmp-target').val());
     if (temp > 35) temp -= 1;
@@ -34,6 +51,7 @@ $(document).ready(function(){
       $('#target-form').submit();
     }, 10000);
   });
+
 });
 
 function getChartData() {
