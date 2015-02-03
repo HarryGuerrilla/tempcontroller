@@ -2,7 +2,15 @@ extends layout
 
 block content
   .row
-    .col-xs-12.messages
+    .col-xs-6.col-md-2
+      .temp-display
+        .temp-dis Current:
+        #temp.temp #{temp}
+    .col-xs-6.col-md-2
+      .temp-display
+        .temp-dis Target:
+        #target.temp #{target}
+    .col-xs-12.col-md-8.messages
       -if (messages.errors)
         .alert.alert-danger
           p Error:
@@ -15,15 +23,6 @@ block content
             strong Success!:&nbsp;
             -each message in messages.success
               span= message
-  .row
-    .col-xs-6.col-md-2
-      .temp-display
-        .temp-dis Current:
-        #temp.temp #{temp}
-    .col-xs-6.col-md-2
-      .temp-display
-        .temp-dis Target:
-        #target.temp #{target}
   .row
     .col-xs-12.col-md-3.col-md-offset-2
       form(name="target", action="/target", method="post", id="target-form")
