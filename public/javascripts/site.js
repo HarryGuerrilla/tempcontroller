@@ -6,7 +6,9 @@ $(document).ready(function(){
     $('#temp').text(reading);
   });
 
-  socket.on('update chart', getChartData());
+  socket.on('update chart', function(reading){
+    getChartData();
+  });
 
   $('#target').addClass('col-xs-8').css('text-align', 'right')
               .after('<div class="col-xs-4 buttons"></div>');
@@ -56,6 +58,8 @@ $(document).ready(function(){
 
 function getChartData() {
   var date = new Date();
+  var now = (new Date).getTime();
+  var plotData = [];
   $.ajax({
     xhr: function() {
        var xhr = new window.XMLHttpRequest();
@@ -67,18 +71,25 @@ function getChartData() {
        }, false);
        return xhr;
     },
-    url: '/api/temp-data',
-    success: function(data) {
-      $.plot($("#placeholder"), [data], {
-        xaxis: {
-          mode: "time",
-          timezone: "browser",
-          max: date
-        },
-        yaxis: {
-          min: 55,
-          max: 90,
-          tickSize: 1
+    url: '/api/temp-data?end=' + now,
+    success: function(temp_data) {
+      plotData.push(temp_data);
+      $.ajax({
+        url: '/api/target-data?end=' + now,
+        success: function(target_data) {
+          plotData.unshift(target_data);
+          $.plot($("#placeholder"), plotData, {
+            xaxis: {
+              mode: "time",
+              timezone: "browser",
+              max: date
+            },
+            yaxis: {
+              min: 55,
+              max: 90,
+              tickSize: 1
+            }
+          });
         }
       });
     }
