@@ -13,7 +13,7 @@ router.get('/current-temp', function(req, res) {
 
 router.get('/temp-data', function(req, res) {
   var today = (new Date).getTime();
-  if(req.params.end) today = req.params.end;
+  if(req.query.end) today = req.query.end;
   data.get(['batch', today - 604800000, today], function(temp_data) {
     var temp_array = [];
     temp_data.forEach(function(data) {
@@ -32,7 +32,7 @@ router.get('/temp-data', function(req, res) {
 
 router.get('/target-data', function(req, res) {
   var today = (new Date).getTime();
-  if(req.params.end) today = req.params.end;
+  if(req.query.end) today = req.query.end;
   data.getTargets(['batch', today - 6048000000, today], function(target_data) {
     var target_array = [];
     target_data.forEach(function(data) {
