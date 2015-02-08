@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:TempController
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -40,7 +41,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "noname.sch"
-Date "3 jun 2014"
+Date "8 feb 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -64,7 +65,7 @@ L R R?
 U 1 1 538D484C
 P 7550 3450
 F 0 "R?" V 7630 3450 40  0000 C CNN
-F 1 "R" V 7557 3451 40  0000 C CNN
+F 1 "10K" V 7557 3451 40  0000 C CNN
 F 2 "~" V 7480 3450 30  0000 C CNN
 F 3 "~" H 7550 3450 30  0000 C CNN
 	1    7550 3450
@@ -111,10 +112,55 @@ F 3 "" H 7000 4450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6750 3950 6750 3950
-Wire Wire Line
-	6750 3950 7000 3950
-Wire Wire Line
 	7000 3950 7000 4450
 Connection ~ 6750 3950
+$Comp
+L DS18B20 IC?
+U 1 1 54D6B80B
+P 1550 3500
+F 0 "IC?" H 1450 3900 60  0000 C CNN
+F 1 "DS18B20" H 1550 3800 60  0000 C CNN
+F 2 "~" H 1550 3500 60  0000 C CNN
+F 3 "~" H 1550 3500 60  0000 C CNN
+	1    1550 3500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R?
+U 1 1 54D6B8B7
+P 2400 3700
+F 0 "R?" V 2480 3700 40  0000 C CNN
+F 1 "R" V 2407 3701 40  0000 C CNN
+F 2 "~" V 2330 3700 30  0000 C CNN
+F 3 "~" H 2400 3700 30  0000 C CNN
+	1    2400 3700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1950 3400 2900 3500
+Wire Wire Line
+	2650 3700 2900 3600
+Wire Wire Line
+	1950 3600 2150 3700
+$Comp
+L BEAGLEBONE_BLACK P?
+U 2 1 54D71F34
+P 3300 4700
+F 0 "P?" H 3300 6000 60  0000 C CNN
+F 1 "BEAGLEBONE_BLACK" V 3300 4700 50  0000 C CNN
+F 2 "~" H 3300 4700 60  0000 C CNN
+F 3 "~" H 3300 4700 60  0000 C CNN
+	2    3300 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4500 3900 4500
+Wire Wire Line
+	2100 3500 1950 3500
+Wire Wire Line
+	2100 3500 2100 3200
+Wire Wire Line
+	2100 3200 3900 3200
+Wire Wire Line
+	3900 3200 3900 4500
 $EndSCHEMATC
