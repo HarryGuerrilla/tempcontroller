@@ -30,6 +30,12 @@ router.get('/temp-data', function(req, res) {
   });
 });
 
+router.get('/current-target', function(req, res) {
+  data.target('batch', function(target_temp){
+    res.send({ target: target_temp });
+  });
+});
+
 router.get('/target-data', function(req, res) {
   var today = (new Date).getTime();
   if(req.query.end) today = req.query.end;
