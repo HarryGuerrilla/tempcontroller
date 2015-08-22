@@ -46,6 +46,10 @@ data.setup(function(){
   var io = require('socket.io')(server);
   var counter = 0;
 
+  data.target('batch', function(target){
+    cooler.target(target.temperature);
+  });
+
   setInterval(function(){
     temp.current(function(temp){
       cooler.checkTemp(temp);
