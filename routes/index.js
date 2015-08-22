@@ -40,6 +40,7 @@ router.post('/target', function(req, res) {
       var args_new = ['batch', date, new_target];
       data.updateTarget(args_current, function(){
         data.updateTarget(args_new, function(){
+          req.app.locals.targetEmitter.emit('change', args_new[2]);
           req.flash('success', 'Updated Target Temperature');
           res.redirect('back');
         });

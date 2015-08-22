@@ -5,7 +5,13 @@ var debug = require('debug')('tempcontroller'),
     http = require('http').Server(app),
     temp = require('../lib/temp'),
     data = require('../lib/data-sqlite'),
-    exec = require('child_process').exec;
+    exec = require('child_process').exec,
+    cooler = require('../lib/cooler');
+
+app.locals.targetEmitter.on('change', function(target) {
+  cooler.target(target);
+  console.log('Target temperature changed to: ' + target + '°');
+});
 
 function logTemperature() {
   temp.current(function(temp) {
@@ -42,7 +48,7 @@ data.setup(function(){
 
   setInterval(function(){
     temp.current(function(temp){
-      console.log('Temperature: ' + temp + '°');
+      cooler.checkTemp(temp);
       io.emit('temp reading', temp);
       counter += 1;
       if(counter % 10 == 0) {

@@ -51,6 +51,7 @@ app.use(function(req, res, next) {
 
 // locals
 app.locals.inspect = require('util').inspect;
+app.locals.targetEmitter = new (require('events').EventEmitter);
 
 /// error handlers
 
