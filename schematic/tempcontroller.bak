@@ -34,8 +34,6 @@ LIBS:beagleboneblack
 LIBS:beaglebone
 LIBS:boneheaderlib
 LIBS:beagleboard
-LIBS:tempcontroller-cache
-LIBS:tempcontroller-cache
 EELAYER 27 0
 EELAYER END
 $Descr A4 11693 8268
