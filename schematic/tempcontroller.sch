@@ -42,7 +42,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "noname.sch"
-Date "20 dec 2015"
+Date "21 dec 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -147,7 +147,7 @@ L R R?
 U 1 1 56771D88
 P 6200 2650
 F 0 "R?" V 6280 2650 40  0000 C CNN
-F 1 "440" V 6207 2651 40  0000 C CNN
+F 1 "430" V 6207 2651 40  0000 C CNN
 F 2 "~" V 6130 2650 30  0000 C CNN
 F 3 "~" H 6200 2650 30  0000 C CNN
 	1    6200 2650
