@@ -87,7 +87,14 @@ function getChartData() {
             yaxis: {
               min: 55,
               max: 90,
-              tickSize: 1
+              tickSize: 1,
+              zoomRange: false
+            },
+            pan: {
+              interactive: true
+            },
+            zoom: {
+              interactive: true
             }
           });
         }
