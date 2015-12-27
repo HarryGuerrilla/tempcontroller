@@ -42,7 +42,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "noname.sch"
-Date "8 feb 2015"
+Date "21 dec 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -84,9 +84,7 @@ F 3 "~" H 2550 2400 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2250 2150 2550 2150
-Wire Wire Line
-	2550 2150 2650 2150
+	2250 2150 2650 2150
 Wire Wire Line
 	2650 2150 2650 1850
 Wire Wire Line
@@ -101,9 +99,7 @@ Wire Wire Line
 Wire Wire Line
 	2400 2250 2400 2650
 Wire Wire Line
-	2400 2650 2550 2650
-Wire Wire Line
-	2550 2650 2800 2650
+	2400 2650 2800 2650
 Wire Wire Line
 	2800 2650 2800 2150
 Wire Wire Line
@@ -124,4 +120,51 @@ F 3 "~" H 3100 1600 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	3100 2050 3100 1600
+$Comp
+L BEAGLEBONE_BLACK P?
+U 1 1 56771C91
+P 5000 3250
+F 0 "P?" H 5000 4550 60  0000 C CNN
+F 1 "BEAGLEBONE_BLACK" V 5000 3250 50  0000 C CNN
+F 2 "~" H 5000 3250 60  0000 C CNN
+F 3 "~" H 5000 3250 60  0000 C CNN
+	1    5000 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D?
+U 1 1 56771CDA
+P 6000 2400
+F 0 "D?" H 6000 2500 50  0000 C CNN
+F 1 "LED" H 6000 2300 50  0000 C CNN
+F 2 "~" H 6000 2400 60  0000 C CNN
+F 3 "~" H 6000 2400 60  0000 C CNN
+	1    6000 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 56771D88
+P 6200 2650
+F 0 "R?" V 6280 2650 40  0000 C CNN
+F 1 "430" V 6207 2651 40  0000 C CNN
+F 2 "~" V 6130 2650 30  0000 C CNN
+F 3 "~" H 6200 2650 30  0000 C CNN
+	1    6200 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 2650 4350 2650
+Wire Wire Line
+	4350 2650 4350 1650
+Wire Wire Line
+	4350 1650 5800 1650
+Wire Wire Line
+	5800 1650 5800 2400
+Wire Wire Line
+	6200 2900 5600 2900
+Wire Wire Line
+	5600 2900 5600 2050
+Wire Wire Line
+	5600 2050 5400 2050
 $EndSCHEMATC
