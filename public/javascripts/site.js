@@ -1,13 +1,58 @@
 var socket = io();
 $(document).ready(function(){
-  getChartData();
+  var chartOptions = {
+    xaxis: {
+      mode: "time",
+      timezone: "browser",
+      max: (new Date)
+    },
+    yaxis: {
+      min: 55,
+      max: 90,
+      tickSize: 1,
+      zoomRange: false
+    },
+    pan: {
+      interactive: true
+    },
+    zoom: {
+      interactive: true
+    }
+  };
+
+  var plotData = [];
+  var plot = $.plot($("#placeholder"), plotData, chartOptions);
+  function updateChart() {
+    plotData = [];
+    function onDataReceived(series) {
+      plotData.push(series);
+      chartOptions = plot.getOptions();
+      plot = $.plot($("#placeholder"), plotData, chartOptions);
+    }
+    $.ajax({
+      url: "/api/temp-data",
+      type: "Get",
+      dataType: "json",
+      data: { "end": (new Date).getTime() },
+      success: onDataReceived
+    });
+    $.ajax({
+      url: "/api/target-data",
+      type: "Get",
+      dataType: "json",
+      data: { "end": (new Date).getTime() },
+      success: onDataReceived
+    });
+  }
+
+  updateChart();
 
   socket.on('temp reading', function(reading){
     $('#temp').text(reading);
   });
 
   socket.on('update chart', function(reading){
-    getChartData();
+    updateChart();
   });
 
   $('#target').addClass('col-xs-8').css('text-align', 'right')
@@ -55,50 +100,3 @@ $(document).ready(function(){
   });
 
 });
-
-function getChartData() {
-  var date = new Date();
-  var now = (new Date).getTime();
-  var plotData = [];
-  $.ajax({
-    xhr: function() {
-       var xhr = new window.XMLHttpRequest();
-       xhr.addEventListener("progress", function(evt) {
-           if (evt.lengthComputable) {
-               var percentComplete = evt.loaded / evt.total;
-               $('.progress-bar').css('width', percentComplete * 100 + '%');
-           }
-       }, false);
-       return xhr;
-    },
-    url: '/api/temp-data?end=' + now,
-    success: function(temp_data) {
-      plotData.push(temp_data);
-      $.ajax({
-        url: '/api/target-data?end=' + now,
-        success: function(target_data) {
-          plotData.unshift(target_data);
-          $.plot($("#placeholder"), plotData, {
-            xaxis: {
-              mode: "time",
-              timezone: "browser",
-              max: date
-            },
-            yaxis: {
-              min: 55,
-              max: 90,
-              tickSize: 1,
-              zoomRange: false
-            },
-            pan: {
-              interactive: true
-            },
-            zoom: {
-              interactive: true
-            }
-          });
-        }
-      });
-    }
-  });
-}
