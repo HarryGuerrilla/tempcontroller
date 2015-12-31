@@ -17,23 +17,24 @@
     "url": "https://github.com/HarryGuerrilla/tempcontroller/issues"
   },
   "dependencies": {
-    "redis": "~0.10.3",
-    "moment": "~2.6.0",
-    "bonescript": "~0.2.4",
-    "express": "~4.2.0",
-    "static-favicon": "~1.0.0",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
-    "debug": "~0.7.4",
-    "jade": "~1.3.0",
-    "stylus": "0.42.3",
-    "sqlite3": "~2.2.7",
-    "node-schedule": "~0.1.13",
-    "mathjs": "~1.2.0",
+    "bonescript": "~0.2.4",
     "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "express": "~4.2.0",
     "express-session": "~1.10.1",
     "express-validator": "~2.8.0",
-    "socket.io": "~1.3.2"
+    "jade": "~1.3.0",
+    "mathjs": "~1.2.0",
+    "mcp9808": "^1.1.0",
+    "moment": "~2.6.0",
+    "morgan": "~1.0.0",
+    "node-schedule": "~0.1.13",
+    "redis": "~0.10.3",
+    "socket.io": "~1.3.2",
+    "sqlite3": "~2.2.7",
+    "static-favicon": "~1.0.0",
+    "stylus": "0.42.3"
   }
 }
