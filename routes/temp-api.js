@@ -14,7 +14,7 @@ router.get('/current-temp', function(req, res) {
 router.get('/temp-data', function(req, res) {
   var today = (new Date).getTime();
   if(req.query.end) today = req.query.end;
-  data.get(['batch', today - 604800000, today], function(temp_data) {
+  data.get(['batch', today - 604800000, today], 'temps', function(temp_data) {
     var temp_array = [];
     temp_data.forEach(function(data) {
       var reading = [data.time, data.temperature];
@@ -57,7 +57,7 @@ router.get('/target-data', function(req, res) {
 });
 
 router.get('/all-temp-data', function(req, res) {
-  data.get(['batch', 0, -1], function(temp_data) {
+  data.get(['batch', 0, -1], 'temps', function(temp_data) {
     var temp_array = [];
     temp_data.forEach(function(data) {
       var reading = [data.time, data.temperature];

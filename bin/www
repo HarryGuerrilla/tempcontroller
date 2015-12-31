@@ -13,11 +13,21 @@ app.locals.targetEmitter.on('change', function(target) {
   console.log('Target temperature changed to: ' + target + '°');
 });
 
-function logTemperature() {
-  temp.current(function(temp) {
-    var time = (new Date).getTime();
-    data.save(['batch', time, temp]);
-  });
+function logTemperature(type) {
+  var time = (new Date).getTime();
+
+  switch (type) {
+  case "temps":
+    temp.current(function(temp) {
+      data.save(['batch', time, temp], type);
+    });
+    break;
+  case "ambient_temps":
+    temp.ambient(function(temp) {
+      data.save(['batch', time, temp], type);
+    });
+    break;
+  }
 }
 
 exec('echo BB-1WIRE-P9-22 > $SLOTS', function(err, stdout, stderr){
@@ -56,7 +66,8 @@ data.setup(function(){
       io.emit('temp reading', temp);
       counter += 1;
       if(counter % 10 == 0) {
-        logTemperature();
+        logTemperature('temps');
+        logTemperature('ambient_temps');
         console.log('updating chart');
         io.emit('update chart');
       }
