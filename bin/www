@@ -61,9 +61,12 @@ data.setup(function(){
   });
 
   setInterval(function(){
-    temp.current(function(temp){
-      cooler.checkTemp(temp);
-      io.emit('temp reading', temp);
+    temp.ambient(function(t){
+      cooler.ambient(t);
+    });
+    temp.current(function(t){
+      cooler.checkTemp(t);
+      io.emit('temp reading', t);
       counter += 1;
       if(counter % 10 == 0) {
         logTemperature('temps');
