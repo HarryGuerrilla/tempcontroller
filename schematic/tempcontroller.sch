@@ -42,7 +42,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "noname.sch"
-Date "21 dec 2015"
+Date "10 jan 2016"
 Rev ""
 Comp ""
 Comment1 ""
@@ -84,7 +84,9 @@ F 3 "~" H 2550 2400 30  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2250 2150 2650 2150
+	2250 2150 2550 2150
+Wire Wire Line
+	2550 2150 2650 2150
 Wire Wire Line
 	2650 2150 2650 1850
 Wire Wire Line
@@ -99,14 +101,20 @@ Wire Wire Line
 Wire Wire Line
 	2400 2250 2400 2650
 Wire Wire Line
-	2400 2650 2800 2650
+	2400 2650 2550 2650
 Wire Wire Line
-	2800 2650 2800 2150
+	2550 2650 2800 2650
+Wire Wire Line
+	2800 2150 2800 2650
+Wire Wire Line
+	2800 2650 2800 3550
 Wire Wire Line
 	2800 2150 3100 2150
 Connection ~ 2550 2650
 Wire Wire Line
-	2250 2050 3100 2050
+	2250 2050 2950 2050
+Wire Wire Line
+	2950 2050 3100 2050
 $Comp
 L AGND #PWR?
 U 1 1 54D79309
@@ -167,4 +175,39 @@ Wire Wire Line
 	5600 2900 5600 2050
 Wire Wire Line
 	5600 2050 5400 2050
+$Comp
+L MCP9808 T?
+U 1 1 569276C4
+P 1250 3200
+F 0 "T?" H 1250 3200 60  0000 C CNN
+F 1 "MCP9808" H 1250 3100 60  0000 C CNN
+F 2 "" H 1250 3200 60  0000 C CNN
+F 3 "" H 1250 3200 60  0000 C CNN
+	1    1250 3200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2800 3550 1950 3550
+Connection ~ 2800 2650
+Wire Wire Line
+	2950 2050 2950 3450
+Wire Wire Line
+	2950 3450 1950 3450
+Connection ~ 2950 2050
+Wire Wire Line
+	3100 2950 2400 2950
+Wire Wire Line
+	2400 2950 2400 3350
+Wire Wire Line
+	2400 3350 1950 3350
+Wire Wire Line
+	3900 2950 4100 2950
+Wire Wire Line
+	4100 2950 4100 4450
+Wire Wire Line
+	4100 4450 2250 4450
+Wire Wire Line
+	2250 3250 2250 4450
+Wire Wire Line
+	1950 3250 2250 3250
 $EndSCHEMATC
