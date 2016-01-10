@@ -43,6 +43,13 @@ $(document).ready(function(){
       data: { "end": (new Date).getTime() },
       success: onDataReceived
     });
+    $.ajax({
+      url: "/api/ambient-temp-data",
+      type: "Get",
+      dataType: "json",
+      data: { "end": (new Date).getTime() },
+      success: onDataReceived
+    });
   }
 
   updateChart();

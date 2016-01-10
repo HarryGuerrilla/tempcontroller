@@ -30,6 +30,27 @@ router.get('/temp-data', function(req, res) {
   });
 });
 
+router.get('/ambient-temp-data', function(req, res) {
+  var today = (new Date).getTime();
+  if(req.query.end) today = req.query.end;
+  data.get(['batch', today - 604800000, today], 'ambient_temps', function(temp_data) {
+    var temp_array = [];
+    temp_data.forEach(function(data) {
+      var reading = [data.time, data.temperature];
+      temp_array.push(reading);
+    });
+    data.downSample(temp_array, 1000, function(temp_sample){
+      var tempData = {
+        label: "Ambient Temperature",
+        data: temp_sample
+      };
+      res.send(tempData);
+    });
+  });
+});
+
+
+
 router.get('/current-target', function(req, res) {
   data.target('batch', function(target_temp){
     res.send({ target: target_temp });
