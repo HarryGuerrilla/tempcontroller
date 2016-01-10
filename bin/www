@@ -6,7 +6,8 @@ var debug = require('debug')('tempcontroller'),
     temp = require('../lib/temp'),
     data = require('../lib/data-sqlite'),
     exec = require('child_process').exec,
-    cooler = require('../lib/cooler');
+    cooler = require('../lib/cooler'),
+    MCP9808 = new require('mcp9808');
 
 app.locals.targetEmitter.on('change', function(target) {
   cooler.target(target);
@@ -23,7 +24,7 @@ function logTemperature(type) {
     });
     break;
   case "ambient_temps":
-    temp.ambient(function(temp) {
+    temp.ambient(MCP9808, function(temp) {
       data.save(['batch', time, temp], type);
     });
     break;
@@ -49,31 +50,33 @@ b.pinMode('USR3', b.OUTPUT);
 b.digitalWrite('USR3', b.LOW);
 
 data.setup(function(){
-  var server = app.listen(app.get('port'), function() {
-    debug('Express server listening on port ' + server.address().port);
-  });
-
-  var io = require('socket.io')(server);
-  var counter = 0;
-
-  data.target('batch', function(target){
-    cooler.target(target.temperature);
-  });
-
-  setInterval(function(){
-    temp.ambient(function(t){
-      cooler.ambient(t);
+  MCP9808.Initialize(function(){
+    var server = app.listen(app.get('port'), function() {
+      debug('Express server listening on port ' + server.address().port);
     });
-    temp.current(function(t){
-      cooler.checkTemp(t);
-      io.emit('temp reading', t);
-      counter += 1;
-      if(counter % 10 == 0) {
-        logTemperature('temps');
-        logTemperature('ambient_temps');
-        console.log('updating chart');
-        io.emit('update chart');
-      }
+
+    var io = require('socket.io')(server);
+    var counter = 0;
+
+    data.target('batch', function(target){
+      cooler.target(target.temperature);
     });
-  }, 5000);
+
+    setInterval(function(){
+      temp.ambient(MCP9808, function(t){
+        cooler.ambient(t);
+      });
+      temp.current(function(t){
+        cooler.checkTemp(t);
+        io.emit('temp reading', t);
+        counter += 1;
+        if(counter % 10 == 0) {
+          logTemperature('temps');
+          logTemperature('ambient_temps');
+          console.log('updating chart');
+          io.emit('update chart');
+        }
+      });
+    }, 5000);
+  });
 });
