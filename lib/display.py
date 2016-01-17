@@ -27,7 +27,8 @@ import Image
 import ImageDraw
 import ImageFont
 
-import sys, getopt
+import json
+import urllib2
 
 # Beaglebone Black pin configuration:
 RST = 'P9_12'
@@ -46,7 +47,7 @@ disp.display()
 # Make sure to create image with mode '1' for 1-bit color.
 width = disp.width
 height = disp.height
-#image = Image.new('1', (width, height))
+
 image = Image.open('/home/tony/tempcontroller/assets/oled.ppm').convert('1')
 
 # Get drawing object to draw on image.
@@ -56,26 +57,22 @@ draw = ImageDraw.Draw(image)
 font = ImageFont.truetype('/home/tony/tempcontroller/public/fonts/Minecraftia-Regular.ttf', 18)
 
 target = ''
-ambient = ''
 current = ''
 
-try:
-    opts, args = getopt.getopt(sys.argv[1:],"t:a:c:")
-except getopt.GetoptError:
-    print 'display.py -c <currentTemp> -t <targetTemp> -a <ambientTmep>'
-    sys.exit(2)
-for opt, arg in opts:
-    if opt in ('-c'):
-        current = arg
-    elif opt == '-t':
-        target = arg
-    elif opt == '-a':
-        ambient = arg
-
-# Write two lines of text.
-draw.text((24, 4),   current,  font=font, fill=255)
-draw.text((102, 4),  target, font=font, fill=255)
-
-# Display image.
-disp.image(image)
-disp.display()
+while True:
+    try:
+        data = json.load(urllib2.urlopen('http://localhost:3001/api/current-temp'))
+        current = str(data['current_temp'])
+        data = json.load(urllib2.urlopen('http://localhost:3001/api/current-target'))
+        target = str(data['target']['temperature'])
+        draw.rectangle((19,0,83,height), outline=0, fill=0)
+        draw.rectangle((102,0,128,height), outline=0, fill=0)
+        draw.text((24, 4),   current,  font=font, fill=255)
+        draw.text((102, 4),  target, font=font, fill=255)
+        disp.image(image)
+        disp.display()
+        time.sleep(1)
+    except:
+        disp.clear()
+        disp.display()
+        break
