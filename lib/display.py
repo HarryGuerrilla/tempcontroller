@@ -55,9 +55,11 @@ draw = ImageDraw.Draw(image)
 
 # Load default font.
 font = ImageFont.truetype('/home/tony/tempcontroller/public/fonts/Minecraftia-Regular.ttf', 18)
+font_small = ImageFont.truetype('/home/tony/tempcontroller/public/fonts/Minecraftia-Regular.ttf', 8)
 
 target = ''
 current = ''
+ambient = ''
 
 while True:
     try:
@@ -65,10 +67,13 @@ while True:
         current = str(data['current_temp'])
         data = json.load(urllib2.urlopen('http://localhost:3001/api/current-target'))
         target = str(data['target']['temperature'])
+        data = json.load(urllib2.urlopen('http://localhost:3001/api/current-ambient'))
+        ambient = str(int(round(data['current_ambient'])))
         draw.rectangle((19,0,83,height), outline=0, fill=0)
         draw.rectangle((102,0,128,height), outline=0, fill=0)
         draw.text((24, 4),   current,  font=font, fill=255)
-        draw.text((102, 4),  target, font=font, fill=255)
+        draw.text((102, 2),  target, font=font_small, fill=255)
+        draw.text((102, 18),  ambient, font=font_small, fill=255)
         disp.image(image)
         disp.display()
         time.sleep(1)
