@@ -80,3 +80,9 @@ data.setup(function(){
     }, 5000);
   });
 });
+
+exec("python /home/tony/tempcontroller/lib/display.py", function(err, stdout, stderr){
+  if (err !== null) {
+    console.log(err);
+  }
+});

@@ -2,7 +2,8 @@ var express = require('express'),
     router = express.Router(),
     temp = require('../lib/temp'),
     util = require('util'),
-    data = require('../lib/data-sqlite');
+    data = require('../lib/data-sqlite'),
+    MCP9808 = new require('mcp9808');
 
 /* GET users listing. */
 router.get('/current-temp', function(req, res) {
@@ -27,6 +28,12 @@ router.get('/temp-data', function(req, res) {
       };
       res.send(tempData);
     });
+  });
+});
+
+router.get('/current-ambient', function(req, res) {
+  temp.ambient(MCP9808, function(ambient_temp){
+    res.send({ current_ambient: ambient_temp });
   });
 });
 
